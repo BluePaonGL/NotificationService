@@ -1,0 +1,13 @@
+openapi: 3.0.2
+info:
+  title: Swagger UserService - OpenApi 3.0
+  description: |
+    This is the documentation for the NotificationService API of the IsHelp application.
+    We tried a microservices approach and this Service serves as the link between our frontends and Keycloak.
+    This API is designed and documented following the OpenApi specifications.
+  contact:
+    email: arthur.cann@eleve.isep.fr
+    license:
+      name: Apache 2.0
+      url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+    version: 1.0.0
