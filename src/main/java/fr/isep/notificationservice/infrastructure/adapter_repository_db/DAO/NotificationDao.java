@@ -1,4 +1,4 @@
-package fr.isep.notificationService.infrastructure.adapter_repository_db.DAO;
+package fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO;
 
 import lombok.*;
 
