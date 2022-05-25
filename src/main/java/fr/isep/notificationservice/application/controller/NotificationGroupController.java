@@ -1,4 +1,4 @@
-package fr.isep.notificationService.application.controller;
+package fr.isep.notificationservice.application.controller;
 
 public class NotificationGroupController {
 }

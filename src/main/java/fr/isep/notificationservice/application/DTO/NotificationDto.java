@@ -1,4 +1,4 @@
-package fr.isep.notificationService.application.DTO;
+package fr.isep.notificationservice.application.DTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
