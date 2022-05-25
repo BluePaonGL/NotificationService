@@ -1,4 +1,4 @@
-package fr.isep.notificationservice;
+package fr.isep.notificationService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package fr.isep.notificationservice.domain.model;
+package fr.isep.notificationService.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
