@@ -1,4 +1,4 @@
-package fr.isep.notificationService.application.controller;
+package fr.isep.notificationservice.application.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
