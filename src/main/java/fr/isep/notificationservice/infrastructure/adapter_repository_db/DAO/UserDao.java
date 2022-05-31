@@ -1,6 +1,7 @@
 package fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,18 +10,18 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
+@Table
 public class UserDao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String userId;
 
     @ManyToMany
     @JoinTable(name = "user_group_association_table",
-            joinColumns = @JoinColumn(name = "idUser"),
-            inverseJoinColumns = @JoinColumn(name = "idRole"))
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "notificationGroupId"))
     private List<NotificationGroupDao> notificationGroups = new ArrayList<>();
 }
