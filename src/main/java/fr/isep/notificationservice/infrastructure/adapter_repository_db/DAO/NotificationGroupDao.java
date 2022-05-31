@@ -1,11 +1,11 @@
 package fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,8 +15,9 @@ import javax.persistence.*;
 @Table(name = "notification_group")
 public class NotificationGroupDao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String uniqueId;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String notificationGroupId;
 
     private String userId;
     private String notificationId;
