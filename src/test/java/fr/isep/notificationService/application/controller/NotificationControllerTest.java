@@ -1,8 +1,6 @@
-package fr.isep.notificationService.application.controller;
+package fr.isep.notificationservice.application.controller;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class NotificationControllerTest {
     @Test

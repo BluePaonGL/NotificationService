@@ -1,8 +1,6 @@
-package fr.isep.notificationService.application.service;
+package fr.isep.notificationservice.application.service;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class NotificationServiceTest {
     @Test
