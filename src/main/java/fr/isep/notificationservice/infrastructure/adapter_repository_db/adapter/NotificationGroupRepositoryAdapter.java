@@ -1,12 +1,12 @@
 package fr.isep.notificationservice.infrastructure.adapter_repository_db.adapter;
 
 import fr.isep.notificationservice.domain.model.NotificationGroup;
-import fr.isep.notificationservice.domain.model.User;
+import fr.isep.notificationservice.domain.model.UserNotif;
 import fr.isep.notificationservice.domain.port.NotificationGroupRepositoryPort;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationGroupDao;
-import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.UserDao;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.UserNotifDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationGroupRepository;
-import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.UserRepository;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.UserNotifRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class NotificationGroupRepositoryAdapter implements NotificationGroupRepositoryPort {
     private final ModelMapper modelMapper;
     private NotificationGroupRepository notificationGroupRepository;
-    private UserRepository userRepository;
+    private UserNotifRepository userNotifRepository;
 
     @Override
     public NotificationGroup save(NotificationGroup notificationGroup) {
@@ -34,9 +34,9 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
     }
 
     @Override
-    public List<User> getUsersByNotificationGroup(String id) {
-        List<UserDao> listDao = this.userRepository.findAll();
-        return listDao.stream().map(user -> modelMapper.map(user, User.class)).collect(Collectors.toList());
+    public List<UserNotif> getUsersByNotificationGroup(String id) {
+        List<UserNotifDao> listDao = this.userNotifRepository.findAll();
+        return listDao.stream().map(user -> modelMapper.map(user, UserNotif.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
 
     @Override
     public void addUserToNotificationGroup(String notificationGroupId, String userId) {
-        this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getUserDaoList().add(userRepository.findByUserId(userId));
-        this.userRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
+        this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getUserNotifDaoList().add(userNotifRepository.findByUserId(userId));
+        this.userNotifRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
     }
 }
