@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
-public class UserNotifNotifRepositoryAdapter implements UserNotifRepositoryPort {
+public class UserNotifRepositoryAdapter implements UserNotifRepositoryPort {
     private final ModelMapper modelMapper;
     private UserNotifRepository userNotifRepository;
 
