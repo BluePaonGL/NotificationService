@@ -3,7 +3,7 @@ package fr.isep.notificationservice.application.controller;
 import fr.isep.notificationservice.application.DTO.NotificationGroupDto;
 import fr.isep.notificationservice.application.port.NotificationGroupServicePort;
 import fr.isep.notificationservice.domain.model.NotificationGroup;
-import fr.isep.notificationservice.domain.model.User;
+import fr.isep.notificationservice.domain.model.UserNotif;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class NotificationGroupController {
     }
 
     @GetMapping("/{id}/getUsers")
-    public ResponseEntity<List<User>> getUsersByNotificationGroup(@PathVariable String id) {
+    public ResponseEntity<List<UserNotif>> getUsersByNotificationGroup(@PathVariable String id) {
         return new ResponseEntity<>(this.notificationGroupServicePort.getUsersByNotificationGroup(id), HttpStatus.OK);
     }
 
