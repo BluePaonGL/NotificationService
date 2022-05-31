@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,5 +25,16 @@ public class NotificationService implements NotificationServicePort{
     public Notification saveNotification(NotificationDto notificationDto) {
         Notification notification = modelMapper.map(notificationDto, Notification.class);
         return this.notificationRepositoryPort.saveNotification(notification);
+    }
+
+    @Override
+    public void addNotification(String notificationId, String notificationGroupId) {
+        this.notificationRepositoryPort.addNotification(notificationId, notificationGroupId);
+    }
+
+    @Override
+    public List<Notification> findAll() {
+        List<Notification> result = this.notificationRepositoryPort.findAll();
+        return result;
     }
 }

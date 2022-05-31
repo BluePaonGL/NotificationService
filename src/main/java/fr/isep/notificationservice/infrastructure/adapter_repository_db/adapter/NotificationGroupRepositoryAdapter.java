@@ -46,7 +46,7 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
 
     @Override
     public void addUserToNotificationGroup(String notificationGroupId, String userId) {
-        this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getUserNotifDaoList().add(userNotifRepository.findByUserId(userId));
         this.userNotifRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
+        this.userNotifRepository.save(this.userNotifRepository.findByUserId(userId));
     }
 }

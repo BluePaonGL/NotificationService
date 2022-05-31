@@ -21,7 +21,7 @@ public class UserNotifDao {
 
     @ManyToMany
     @JoinTable(name = "user_group_association_table",
-            joinColumns = @JoinColumn(name = "userId"),
+            joinColumns = @JoinColumn(name = "userNotifId"),
             inverseJoinColumns = @JoinColumn(name = "notificationGroupId"))
     private List<NotificationGroupDao> notificationGroups = new ArrayList<>();
 }

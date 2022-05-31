@@ -41,6 +41,4 @@ public class NotificationServiceGroupService implements NotificationGroupService
     public void addUser(String notificationGroupId, String userId) {
         this.notificationGroupRepositoryPort.addUserToNotificationGroup(notificationGroupId, userId);
     }
-
-
 }
