@@ -7,7 +7,7 @@ import java.util.List;
 public interface NotificationRepositoryPort {
     Notification saveNotification(Notification notification);
 
-    void addNotification(String notificationId, String notificationGroupId);
-
     List<Notification> findAll();
+
+    void deleteNotification(String notificationId);
 }

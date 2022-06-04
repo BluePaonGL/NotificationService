@@ -5,6 +5,7 @@ import fr.isep.notificationservice.domain.port.NotificationRepositoryPort;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationGroupRepository;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationRepository;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.UserNotifRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ public class NotificationRepositoryAdapter implements NotificationRepositoryPort
     private final ModelMapper modelMapper;
     private NotificationRepository notificationRepository;
     private NotificationGroupRepository notificationGroupRepository;
+    private UserNotifRepository userNotifRepository;
 
     @Override
     public Notification saveNotification(Notification notification) {
@@ -26,16 +28,13 @@ public class NotificationRepositoryAdapter implements NotificationRepositoryPort
     }
 
     @Override
-    public void addNotification(String notificationId, String notificationGroupId) {
-        this.notificationRepository.findByNotificationId(notificationId).setNotificationGroup(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
-        this.notificationRepository.save(this.notificationRepository.findByNotificationId(notificationId));
+    public List<Notification> findAll() {
+        List<NotificationDao> notificationDao = this.notificationRepository.findAll();
+        return notificationDao.stream().map(notification -> modelMapper.map(notification, Notification.class)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Notification> findAll() {
-        List<NotificationDao> notificationDaos = this.notificationRepository.findAll();
-        return notificationDaos.stream().map(notification -> modelMapper.map(notification, Notification.class)).collect(Collectors.toList());
+    public void deleteNotification(String notificationId) {
+        this.notificationRepository.delete(notificationRepository.findByNotificationId(notificationId));
     }
-
-
 }

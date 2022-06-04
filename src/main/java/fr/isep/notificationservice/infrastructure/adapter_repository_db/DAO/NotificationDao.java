@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,6 +25,6 @@ public class NotificationDao {
     private String content;
     private NotificationTypeEnum type;
 
-    @ManyToOne
-    private NotificationGroupDao notificationGroup;
+    @ManyToMany(mappedBy = "notifications")
+    private List<UserNotifDao> userNotifDaoList;
 }

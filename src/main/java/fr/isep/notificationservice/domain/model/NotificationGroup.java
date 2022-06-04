@@ -1,5 +1,6 @@
 package fr.isep.notificationservice.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -11,4 +12,14 @@ public class NotificationGroup {
     private String userId;
     private String notificationId;
     private List<UserNotif> userNotifList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "NotificationGroup{" +
+                "notificationGroupId='" + notificationGroupId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", notificationId='" + notificationId + '\'' +
+                ", userNotifList=" + userNotifList +
+                '}';
+    }
 }

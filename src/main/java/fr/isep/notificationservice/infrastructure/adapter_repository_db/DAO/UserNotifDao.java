@@ -15,8 +15,8 @@ import java.util.List;
 @Table
 public class UserNotifDao {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String userId;
 
     @ManyToMany
@@ -24,4 +24,10 @@ public class UserNotifDao {
             joinColumns = @JoinColumn(name = "userNotifId"),
             inverseJoinColumns = @JoinColumn(name = "notificationGroupId"))
     private List<NotificationGroupDao> notificationGroups = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_notifications",
+            joinColumns = @JoinColumn(name = "userNotidIf"),
+            inverseJoinColumns = @JoinColumn(name = "notificationId"))
+    private List<NotificationDao> notifications = new ArrayList<>();
 }
