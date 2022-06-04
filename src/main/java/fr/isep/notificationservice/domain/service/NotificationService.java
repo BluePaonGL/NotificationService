@@ -28,13 +28,13 @@ public class NotificationService implements NotificationServicePort{
     }
 
     @Override
-    public void addNotification(String notificationId, String notificationGroupId) {
-        this.notificationRepositoryPort.addNotification(notificationId, notificationGroupId);
-    }
-
-    @Override
     public List<Notification> findAll() {
         List<Notification> result = this.notificationRepositoryPort.findAll();
         return result;
+    }
+
+    @Override
+    public void deleteNotification(String notificationId) {
+        this.notificationRepositoryPort.deleteNotification(notificationId);
     }
 }

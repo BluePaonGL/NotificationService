@@ -1,5 +1,9 @@
 package fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,4 +28,5 @@ public class NotificationGroupDao {
 
     @ManyToMany(mappedBy = "notificationGroups")
     private List<UserNotifDao> userNotifDaoList = new ArrayList<>();
+
 }

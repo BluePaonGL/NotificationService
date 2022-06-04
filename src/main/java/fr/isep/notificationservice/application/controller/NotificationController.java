@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -24,13 +23,13 @@ public class NotificationController {
         return ResponseEntity.ok(this.notificationServicePort.saveNotification(notificationDto));
     }
 
-    @PostMapping("{notificationId}/addTo/{notificationGroupId}")
-    public void addNotificationToNotificationGroup(@PathVariable String notificationId, @PathVariable String notificationGroupId) {
-        this.notificationServicePort.addNotification(notificationId, notificationGroupId);
-    }
-
     @GetMapping("/getNotifications")
     public ResponseEntity<List<Notification>> getNotifications() {
         return new ResponseEntity<>(this.notificationServicePort.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping("/{notificationId}/delete")
+    public void deleteNotification(@PathVariable String notificationId) {
+        this.notificationServicePort.deleteNotification(notificationId);
     }
 }

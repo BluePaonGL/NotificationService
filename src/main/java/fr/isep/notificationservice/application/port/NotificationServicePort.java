@@ -9,7 +9,7 @@ import java.util.List;
 public interface NotificationServicePort {
     Notification saveNotification(NotificationDto notificationDto);
 
-    void addNotification(String notificationId, String notificationGroupId);
-
     List<Notification> findAll();
+
+    void deleteNotification(String notificationId);
 }
