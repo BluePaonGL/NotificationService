@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class EventNotifRepositoryAdapter implements EventNotifRepositoryPort {
@@ -25,5 +28,11 @@ public class EventNotifRepositoryAdapter implements EventNotifRepositoryPort {
         this.notificationGroupRepository.save(notificationGroup);
         eventNotifDao.setNotificationGroupDao(notificationGroup);
         return modelMapper.map(this.eventNotifRepository.save(eventNotifDao), EventNotif.class);
+    }
+
+    @Override
+    public List<EventNotif> findAll() {
+        List<EventNotifDao> listDao = this.eventNotifRepository.findAll();
+        return listDao.stream().map(eventNotif -> modelMapper.map(eventNotif, EventNotif.class)).collect(Collectors.toList());
     }
 }

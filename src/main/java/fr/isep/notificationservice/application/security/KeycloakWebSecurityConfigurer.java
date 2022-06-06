@@ -26,8 +26,6 @@ public class KeycloakWebSecurityConfigurer extends KeycloakWebSecurityConfigurer
         http.cors();
     }
 
-
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
         SimpleAuthorityMapper grantedAuthorityMapper = new SimpleAuthorityMapper();
@@ -43,5 +41,4 @@ public class KeycloakWebSecurityConfigurer extends KeycloakWebSecurityConfigurer
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
     }
-
 }

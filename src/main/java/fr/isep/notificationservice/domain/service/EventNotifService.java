@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +23,11 @@ public class EventNotifService implements EventNotifPort {
     public EventNotif saveNotification(EventNotifDto eventNotifDto) {
         EventNotif eventNotif = modelMapper.map(eventNotifDto, EventNotif.class);
         return this.eventNotifRepositoryPort.saveEventNotification(eventNotif);
+    }
+
+    @Override
+    public List<EventNotif> findAll() {
+        List<EventNotif> result = this.eventNotifRepositoryPort.findAll();
+        return result;
     }
 }
