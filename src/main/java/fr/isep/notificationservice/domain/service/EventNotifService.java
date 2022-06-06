@@ -30,4 +30,9 @@ public class EventNotifService implements EventNotifPort {
         List<EventNotif> result = this.eventNotifRepositoryPort.findAll();
         return result;
     }
+
+    @Override
+    public void addUser(String eventNotifId, String userId) {
+        this.eventNotifRepositoryPort.addUserToEventNotif(eventNotifId, userId);
+    }
 }

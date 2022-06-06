@@ -8,4 +8,6 @@ public interface EventNotifRepositoryPort {
     EventNotif saveEventNotification(EventNotif eventNotif);
 
     List<EventNotif> findAll();
+
+    void addUserToEventNotif(String eventNotifId, String userId);
 }

@@ -9,4 +9,6 @@ public interface EventNotifPort {
     EventNotif saveNotification(EventNotifDto eventNotifDto);
 
     List<EventNotif> findAll();
+
+    void addUser(String eventNotifId, String userId);
 }

@@ -3,6 +3,7 @@ package fr.isep.notificationservice.application.controller;
 import fr.isep.notificationservice.application.DTO.EventNotifDto;
 import fr.isep.notificationservice.application.port.EventNotifPort;
 import fr.isep.notificationservice.domain.model.EventNotif;
+import fr.isep.notificationservice.domain.model.UserNotif;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,5 +28,10 @@ public class EventNotifController {
     @GetMapping("/getEventNotif")
     public ResponseEntity<List<EventNotif>> getEventNotif() {
         return new ResponseEntity<>(this.eventNotifPort.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping("/{eventNotifId}/addUser/{userId}")
+    public void addUserToEventNotif(@PathVariable String eventNotifId, @PathVariable String userId) {
+        this.eventNotifPort.addUser(eventNotifId, userId);
     }
 }
