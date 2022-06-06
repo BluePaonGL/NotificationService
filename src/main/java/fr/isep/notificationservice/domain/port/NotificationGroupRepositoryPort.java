@@ -15,4 +15,6 @@ public interface NotificationGroupRepositoryPort {
     NotificationGroup getNotificationGroupById(String id);
 
     void addUserToNotificationGroup(String notificationGroupId, String userId);
+
+    void addNotificationToNotificationGroup(String notificationGroupId, String notificationId);
 }

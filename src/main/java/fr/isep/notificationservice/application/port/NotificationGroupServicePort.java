@@ -14,4 +14,6 @@ public interface NotificationGroupServicePort {
     List<UserNotif> getUsersByNotificationGroup(String id);
 
     void addUser(String notificationGroupId, String userId);
+
+    void addNotification(String notificationGroupId, String notificationId);
 }
