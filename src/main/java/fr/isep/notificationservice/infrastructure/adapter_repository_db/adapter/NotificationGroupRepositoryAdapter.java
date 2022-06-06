@@ -6,6 +6,7 @@ import fr.isep.notificationservice.domain.port.NotificationGroupRepositoryPort;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationGroupDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.UserNotifDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationGroupRepository;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationRepository;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.UserNotifRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,6 +21,7 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
     private final ModelMapper modelMapper;
     private NotificationGroupRepository notificationGroupRepository;
     private UserNotifRepository userNotifRepository;
+    private NotificationRepository notificationRepository;
 
     @Override
     public NotificationGroup save(NotificationGroup notificationGroup) {
@@ -46,6 +48,7 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
 
     @Override
     public void addUserToNotificationGroup(String notificationGroupId, String userId) {
+        this.userNotifRepository.findByUserId(userId).getNotifications().add(notificationRepository.findByNotificationId(notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getNotificationId()));
         this.userNotifRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
         this.userNotifRepository.save(this.userNotifRepository.findByUserId(userId));
     }
