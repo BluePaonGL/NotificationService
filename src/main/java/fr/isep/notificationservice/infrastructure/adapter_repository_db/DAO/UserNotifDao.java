@@ -12,12 +12,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
+@Table(name = "user_notif")
 public class UserNotifDao {
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String userId;
+    private String email;
 
     @ManyToMany
     @JoinTable(name = "user_group_association_table",

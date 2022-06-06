@@ -41,4 +41,9 @@ public class NotificationServiceGroupService implements NotificationGroupService
     public void addUser(String notificationGroupId, String userId) {
         this.notificationGroupRepositoryPort.addUserToNotificationGroup(notificationGroupId, userId);
     }
+
+    @Override
+    public void addNotification(String notificationGroupId, String notificationId) {
+        this.notificationGroupRepositoryPort.addNotificationToNotificationGroup(notificationGroupId, notificationId);
+    }
 }

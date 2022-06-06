@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import fr.isep.notificationservice.domain.model.Notification;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,11 +23,9 @@ public class NotificationGroupDao {
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String notificationGroupId;
-
-    private String userId;
+    
     private String notificationId;
 
     @ManyToMany(mappedBy = "notificationGroups")
     private List<UserNotifDao> userNotifDaoList = new ArrayList<>();
-
 }

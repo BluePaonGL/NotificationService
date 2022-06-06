@@ -3,6 +3,7 @@ package fr.isep.notificationservice.infrastructure.adapter_repository_db.adapter
 import fr.isep.notificationservice.domain.model.NotificationGroup;
 import fr.isep.notificationservice.domain.model.UserNotif;
 import fr.isep.notificationservice.domain.port.NotificationGroupRepositoryPort;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationGroupDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.UserNotifDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationGroupRepository;
@@ -51,5 +52,15 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
         this.userNotifRepository.findByUserId(userId).getNotifications().add(notificationRepository.findByNotificationId(notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getNotificationId()));
         this.userNotifRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
         this.userNotifRepository.save(this.userNotifRepository.findByUserId(userId));
+    }
+
+    @Override
+    public void addNotificationToNotificationGroup(String notificationGroupId, String notificationId) {
+        for (UserNotifDao userNotifDao : this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getUserNotifDaoList()) {
+            List<NotificationDao> userNotifications = this.userNotifRepository.findByUserId(userNotifDao.getUserId()).getNotifications();
+            userNotifications.add(this.notificationRepository.findByNotificationId(notificationId));
+            userNotifDao.setNotifications(userNotifications);
+            this.userNotifRepository.save(userNotifDao);
+        }
     }
 }

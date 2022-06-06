@@ -34,8 +34,13 @@ public class NotificationGroupController {
         return new ResponseEntity<>(this.notificationGroupServicePort.getUsersByNotificationGroup(notificationGroupId), HttpStatus.OK);
     }
 
-    @PostMapping("{notificationGroupId}/add/{userId}")
+    @PostMapping("{notificationGroupId}/addUser/{userId}")
     public void addUserToNotificationGroup(@PathVariable String notificationGroupId, @PathVariable String userId) {
         this.notificationGroupServicePort.addUser(notificationGroupId, userId);
+    }
+
+    @PostMapping("/{notificationGroupId}/addNotification/{notificationId}")
+    public void addNotificationToNotificationGroup(@PathVariable String notificationGroupId, @PathVariable String notificationId) {
+        this.notificationGroupServicePort.addNotification(notificationGroupId, notificationId);
     }
 }
