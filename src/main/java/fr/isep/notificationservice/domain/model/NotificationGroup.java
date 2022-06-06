@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class NotificationGroup {
     private String notificationGroupId;
-    private String userId;
     private String notificationId;
     private List<UserNotif> userNotifList = new ArrayList<>();
 
@@ -17,7 +16,6 @@ public class NotificationGroup {
     public String toString() {
         return "NotificationGroup{" +
                 "notificationGroupId='" + notificationGroupId + '\'' +
-                ", userId='" + userId + '\'' +
                 ", notificationId='" + notificationId + '\'' +
                 ", userNotifList=" + userNotifList +
                 '}';
