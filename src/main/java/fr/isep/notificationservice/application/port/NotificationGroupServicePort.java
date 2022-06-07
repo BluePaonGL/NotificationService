@@ -16,4 +16,6 @@ public interface NotificationGroupServicePort {
     void addUser(String notificationGroupId, String userId);
 
     void addNotification(String notificationGroupId, String notificationId);
+
+    void deleteNotificationGroup(String notificationGroupId);
 }

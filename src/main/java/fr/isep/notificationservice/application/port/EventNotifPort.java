@@ -11,4 +11,6 @@ public interface EventNotifPort {
     List<EventNotif> findAll();
 
     void addUser(String eventNotifId, String userId);
+
+    void deleteEventNotif(String eventNotifId);
 }

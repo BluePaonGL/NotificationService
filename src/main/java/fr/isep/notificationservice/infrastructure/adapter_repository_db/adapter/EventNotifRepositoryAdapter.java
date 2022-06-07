@@ -3,6 +3,7 @@ package fr.isep.notificationservice.infrastructure.adapter_repository_db.adapter
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.EventNotifDao;
 import fr.isep.notificationservice.domain.model.EventNotif;
 import fr.isep.notificationservice.domain.port.EventNotifRepositoryPort;
+import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.DAO.NotificationGroupDao;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.EventNotifRepository;
 import fr.isep.notificationservice.infrastructure.adapter_repository_db.repository.NotificationGroupRepository;
@@ -45,5 +46,16 @@ public class EventNotifRepositoryAdapter implements EventNotifRepositoryPort {
         this.userNotifRepository.findByUserId(userId).getNotifications().add(notificationRepository.findByNotificationId(notificationGroupRepository.findByNotificationGroupId(notificationGroup.getNotificationGroupId()).getNotificationId()));
         this.userNotifRepository.findByUserId(userId).getNotificationGroups().add(notificationGroupRepository.findByNotificationGroupId(notificationGroup.getNotificationGroupId()));
         this.userNotifRepository.save(this.userNotifRepository.findByUserId(userId));
+    }
+
+    @Override
+    public void deleteEventNotif(String eventNotifId) {
+        NotificationGroupDao notificationGroupDao = this.eventNotifRepository.findByEventNotifId(eventNotifId).getNotificationGroupDao();
+        this.eventNotifRepository.delete(eventNotifRepository.findByEventNotifId(eventNotifId));
+        this.notificationGroupRepository.delete(notificationGroupRepository.findByNotificationGroupId(notificationGroupDao.getNotificationGroupId()));
+
+//        for(NotificationDao notificationDao : notificationGroupDao.getNotifications()) {
+//            this.notificationRepository.delete(notificationRepository.findByNotificationId(notificationDao.getNotificationId()));
+//        }
     }
 }

@@ -56,11 +56,27 @@ public class NotificationGroupRepositoryAdapter implements NotificationGroupRepo
 
     @Override
     public void addNotificationToNotificationGroup(String notificationGroupId, String notificationId) {
+        NotificationGroupDao notificationGroupDao = this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId);
+        List<NotificationDao> notifications = notificationGroupDao.getNotifications();
+        notifications.add(notificationRepository.findByNotificationId(notificationId));
+        notificationGroupDao.setNotifications(notifications);
+        this.notificationGroupRepository.save(notificationGroupDao);
+
         for (UserNotifDao userNotifDao : this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId).getUserNotifDaoList()) {
             List<NotificationDao> userNotifications = this.userNotifRepository.findByUserId(userNotifDao.getUserId()).getNotifications();
             userNotifications.add(this.notificationRepository.findByNotificationId(notificationId));
             userNotifDao.setNotifications(userNotifications);
             this.userNotifRepository.save(userNotifDao);
         }
+    }
+
+    @Override
+    public void deleteNotificationGroup(String notificationGroupId) {
+        //NotificationGroupDao notificationGroupDao = this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId);
+        this.notificationGroupRepository.delete(this.notificationGroupRepository.findByNotificationGroupId(notificationGroupId));
+
+//        for(NotificationDao notificationDao : notificationGroupDao.getNotifications()) {
+//            this.notificationRepository.delete(this.notificationRepository.findByNotificationId(notificationDao.getNotificationId()));
+//        }
     }
 }

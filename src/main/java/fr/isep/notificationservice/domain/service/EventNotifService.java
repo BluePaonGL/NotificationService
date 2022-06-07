@@ -35,4 +35,9 @@ public class EventNotifService implements EventNotifPort {
     public void addUser(String eventNotifId, String userId) {
         this.eventNotifRepositoryPort.addUserToEventNotif(eventNotifId, userId);
     }
+
+    @Override
+    public void deleteEventNotif(String eventNotifId) {
+        this.eventNotifRepositoryPort.deleteEventNotif(eventNotifId);
+    }
 }
