@@ -43,4 +43,9 @@ public class NotificationGroupController {
     public void addNotificationToNotificationGroup(@PathVariable String notificationGroupId, @PathVariable String notificationId) {
         this.notificationGroupServicePort.addNotification(notificationGroupId, notificationId);
     }
+
+    @PostMapping("/{notificationGroupId}/delete")
+    public void deleteNotificationGroup(@PathVariable String notificationGroupId) {
+        this.notificationGroupServicePort.deleteNotificationGroup(notificationGroupId);
+    }
 }

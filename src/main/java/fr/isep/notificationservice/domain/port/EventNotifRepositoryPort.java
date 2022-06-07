@@ -10,4 +10,6 @@ public interface EventNotifRepositoryPort {
     List<EventNotif> findAll();
 
     void addUserToEventNotif(String eventNotifId, String userId);
+
+    void deleteEventNotif(String eventNotifId);
 }

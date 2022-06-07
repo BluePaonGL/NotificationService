@@ -34,4 +34,9 @@ public class EventNotifController {
     public void addUserToEventNotif(@PathVariable String eventNotifId, @PathVariable String userId) {
         this.eventNotifPort.addUser(eventNotifId, userId);
     }
+
+    @PostMapping("/{eventNotifId}/delete")
+    public void deleteEventNotif(@PathVariable String eventNotifId) {
+        this.eventNotifPort.deleteEventNotif(eventNotifId);
+    }
 }
